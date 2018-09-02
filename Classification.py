@@ -5,7 +5,7 @@ from matplotlib import pyplot as plt
 
 
 n_data=torch.ones(100,2)
-x0=torch.normal(2*n_data,1)
+x0=torch.normal(2*n_data,1)# normal(means,std)
 y0=torch.zeros(100)
 x1=torch.normal(-2*n_data,1)
 y1=torch.ones(100)
@@ -35,7 +35,7 @@ optimizer=torch.optim.SGD(net.parameters(),lr=0.02)
 loss_func=torch.nn.CrossEntropyLoss()
 for t in range(100):
     out=net(x)
-    loss=loss_func(prediction,y)
+    loss=loss_func(out,y)
     optimizer.zero_grad()
     loss.backward()
     optimizer.step()
@@ -45,9 +45,9 @@ for t in range(100):
         prediction=torch.max(F.softmax(out),1)[1] # index=0 is value ,index =1 is the position
         pred_y=prediction.data.numpy().squeeze()
         traget_y=y.data.numpy()
-        plt.scatter(x.data.numpy()[:,0],y.data.numpy()[:,1],c=pred_y,s=100,lw=0,cmap=)
-        accuracy=sum(pred_y==traget_y)/200
-        plt.text(1.5,-4,'Accuracy=%0.2f'%accuracy,fontdict={'soze':20,'color':'red'})
+        plt.scatter(x.data.numpy()[:,0],x.data.numpy()[:,1],c=pred_y,s=100,lw=0)
+        accuracy=sum(pred_y==traget_y)/200.0
+        plt.text(1.5,-4,'Accuracy=%0.2f'%accuracy,fontdict={'size':20,'color':'red'})
         plt.pause(0.1)
 
 plt.ioff()

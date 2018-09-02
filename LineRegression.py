@@ -36,7 +36,7 @@ for t in range(100):
     if t%5==0:
         plt.cla()
         plt.scatter(x.data.numpy(),y.data.numpy())
-        plt.plot(x.data.numpy(),prediction.data.numpy(),'r-',lw=5)
+        plt.plot(x.data.numpy(),prediction.data.numpy(),'r-',lw=0.5)
         plt.text(0.5,0,'LOSS=%.4f'%loss.item(),fontdict={'size':20,'color':'red'})
         plt.pause(0.1)
 
